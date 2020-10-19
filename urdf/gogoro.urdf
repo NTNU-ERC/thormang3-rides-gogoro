@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<robot name="gogoro">
+    <!-- Gazebo Plugins -->
+    <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>/gogoro</robotNamespace>
+    </plugin>
+    </gazebo>
+
+    <!--
+    <gazebo>
+    <plugin name="ground_truth" filename="libgazebo_ros_p3d.so">
+        <frameName>body</frameName>
+        <bodyName>body</bodyName>
+        <topicName>odom</topicName>
+        <updateRate>100.0</updateRate>
+    </plugin>
+    </gazebo>
+    -->
+
+    <!-- Joints definitions -->
+    <!-- Steering handle bar-->
+    <joint name="steering_joint" type="revolute">
+        <parent link="body"/>
+        <child link="head"/>
+        <origin xyz="471.816e-03 0 721.487e-03" rpy="0 -0.5235987755982988 0"/>
+        <axis xyz="0 0 1"/>
+        <limit velocity="10000" effort="10000" lower="-0.5235987755982988" upper="0.5235987755982988"/>
+        <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+    <!-- Fron wheel -->
+    <joint name="front_wheel_joint" type="continuous">
+        <parent link="head"/>
+        <child link="front"/>
+        <origin xyz="-30e-03 0 -580.288e-03" rpy="0 0.5235987755982988 0"/>
+        <axis xyz="0 1 0"/>
+        <limit velocity="100000" effort="0"/>
+        <dynamics damping="0.0" friction="0.0"/>
+    </joint>    
+
+    <!-- Rear wheel -->
+    <joint name="rear_wheel_joint" type="continuous">
+        <parent link="body"/>
+        <child link="back"/>
+        <origin xyz="-448.031e-03 0 201.999e-03" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <dynamics damping="0.0" friction="0.0"/>
+        <!-- <limit velocity="6.5" effort="1000" lower="${-pi*30/180}" upper="${pi*30/180}"/> -->
+    </joint>    
+
+    <!-- Transmissions-->
+    <transmission name="tran1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="steering_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="tran2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rear_wheel_joint">
+            <!-- <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>-->
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor2">
+            <!-- <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface> -->
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <!-- Links definition-->
+    <link name="body">
+        <inertial>
+            <origin xyz="-43.617e-03 0 486.763e-03" rpy="0 0 0"/>
+            <mass value="6.5007e+01"/> <!-- 79.2 -->
+            <inertia ixx="4.40515" ixy="0.117584" ixz="-1.66168" iyy="18.0137" iyz="0.098875" izz="14.8791"/>
+        </inertial>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://gogoro_description/meshes/body.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://gogoro_description/meshes/body.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+    </link>
+
+        <!--2nd link-->
+    <link name="head">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="8.280e+00"/>
+            <inertia ixx="1.209e+01" ixy="0" ixz="5.265e+00" iyy="1.505e+01" iyz="0" izz="3.955e+01"/>
+        </inertial>
+
+        <collision>
+            <origin xyz="-769.287e-03 0 -388.918e-03" rpy="0 0.5235987755982988 0"/>
+            <geometry>
+                <mesh filename="package://gogoro_description/meshes/head_bar.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="-769.287e-03 0 -388.918e-03" rpy="0 0.5235987755982988 0"/>
+            <geometry>
+                <mesh filename="package://gogoro_description/meshes/head_bar.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+    </link>
+
+
+    <link name="front">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <!-- <mass value="2.753e+00"/> -->
+            <mass value="0.1"/>
+            <!-- <inertia ixx="8.712" ixy="0" ixz="0" iyy="77.28" iyz="0" izz="8.712"/> -->
+            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+        </inertial>
+
+        <collision name="collision_front">
+            <origin xyz="-731.969e-03 0 -201.999e-03" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://gogoro_description/meshes/front_wheel.stl" scale="0.001 0.001 0.001"/>
+                <!-- <sphere radius="1.0"/> -->
+            </geometry>
+        </collision>
+
+        <visual>
+           <origin xyz="-731.969e-03 0 -201.999e-03" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://gogoro_description/meshes/front_wheel.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+        <!--4th link-->
+    <link name="back">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="2.753e+00"/>
+            <!-- <mass value="0.1"/> -->
+            <inertia ixx=".8712" ixy="0" ixz="0" iyy="7.728" iyz="0" izz=".8712"/>
+            <!-- <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/> -->
+        </inertial>
+
+        <collision name="collision_back">
+            <origin xyz="-731.969e-03 0 -201.999e-03" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://gogoro_description/meshes/front_wheel.stl" scale="0.001 0.001 0.001"/>
+                <!-- <sphere radius="1.0"/> -->
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="-731.969e-03 0 -201.999e-03" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://gogoro_description/meshes/front_wheel.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+    </link>
+
+    <gazebo reference="front">
+        <material>Gazebo/Grey</material>        
+    </gazebo>
+
+    <gazebo reference="back">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="back">
+        <mu1>0.7</mu1>
+        <mu2>0.7</mu2>
+        <maxVel>100.0</maxVel>        
+    </gazebo>
+
+    <gazebo reference="front">
+        <mu1>0.7</mu1>
+        <mu2>0.7</mu2>
+        <maxVel>100.0</maxVel>
+    </gazebo>
+
+</robot>

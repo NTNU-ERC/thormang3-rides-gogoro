@@ -1,0 +1,18 @@
+gogoro:
+# Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 125
+
+  # Steering is a position controller 
+  steering:
+   type: effort_controllers/JointPositionController
+   joint: steering_joint
+   pid: {p: 1000.0, i: 10.0, d: 100.0}
+
+  # Gas is a velocity controller
+  gas:
+    #type: velocity_controllers/JointVelocityController
+    type: effort_controllers/JointVelocityController
+    joint: rear_wheel_joint 
+    pid: {p: 10.0, i: 1.0, d: .01}
