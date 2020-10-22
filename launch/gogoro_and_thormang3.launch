@@ -20,7 +20,7 @@
     <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find gogoro_description)/urdf/gogoro_and_thormang3.xacro'"/>
 
     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model gogoro_and_thormang3 
-        -z 2.0
+        -z 1.0
         -J l_arm_el_y -0.844
         -J l_arm_wr_r -0.260
         -J head_y -0.003
@@ -54,8 +54,8 @@
         -J r_leg_kn_p -0.975
         "/>
     
-    <include file="$(find gogoro_description)/launch/position_controller.launch"/>
-    <include file="$(find thormang3_gazebo)/launch/position_controller.launch"/>
+    <include file="$(find gogoro_description)/launch/gogoro_position_controller.launch"/>
+    <include file="$(find gogoro_description)/launch/thormang3_position_controller.launch"/>
 
     
 </launch>

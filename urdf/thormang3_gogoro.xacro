@@ -6,15 +6,15 @@
   <xacro:property name="pi" value="3.141592654" />
 
   <!-- Import all Gazebo-customization elements, including Gazebo colors -->
-  <xacro:include filename="$(find thormang3_description)/urdf/thormang3.gazebo" />
+  <xacro:include filename="$(find gogoro_description)/urdf/thormang3/thormang3.gazebo" />
   <!-- Import Rviz colors -->
-  <xacro:include filename="$(find thormang3_description)/urdf/materials.xacro" />
+  <xacro:include filename="$(find gogoro_description)/urdf/thormang3/materials.xacro" />
 
-  <xacro:include filename="$(find thormang3_description)/urdf/thormang3.structure.arm.xacro" />
-  <xacro:include filename="$(find thormang3_description)/urdf/thormang3.structure.leg.xacro" />
-  <xacro:include filename="$(find thormang3_description)/urdf/thormang3.structure.head.xacro" />
+  <xacro:include filename="$(find gogoro_description)/urdf/thormang3/thormang3.structure.arm.xacro" />
+  <xacro:include filename="$(find gogoro_description)/urdf/thormang3/thormang3.structure.leg.xacro" />
+  <xacro:include filename="$(find gogoro_description)/urdf/thormang3/thormang3.structure.head.xacro" />
   
-  <xacro:include filename="$(find thormang3_description)/urdf/thormang3.transmissions.xacro" />
+  <xacro:include filename="$(find gogoro_description)/urdf/thormang3/thormang3.transmissions.xacro" />
 
 
   <!-- Used for fixing robot -->
@@ -39,17 +39,19 @@
 -->
   <!-- pelvis_link -->
   <link name="pelvis_link">
+    <!--
     <collision>
       <origin xyz="-0.01 0 0.07" rpy="0 0 0"/>
       <geometry>
         <box size="0.2 0.25 0.17" />
       </geometry>
     </collision>
+    --> 
 
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://thormang3_description/meshes/robotis_pelvis_link.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://gogoro_description/meshes/thormang3/robotis_pelvis_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="grey"/>
     </visual>
@@ -75,17 +77,19 @@
   
   <!-- chest_link -->
   <link name="chest_link">
+    <!--
     <collision>
       <origin xyz="-0.01 0 0.11" rpy="0 0 0"/>
       <geometry>
         <box size="0.2 0.25 0.23" />
       </geometry>
     </collision>
+    -->
 
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://thormang3_description/meshes/robotis_chest_link.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://gogoro_description/meshes/thormang3/robotis_chest_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="grey"/>
     </visual>

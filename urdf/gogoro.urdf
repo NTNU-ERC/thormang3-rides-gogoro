@@ -83,12 +83,14 @@
             <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
         </inertial>
 
+        <!--
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
                 <mesh filename="package://gogoro_description/meshes/body.stl" scale="0.001 0.001 0.001"/>
             </geometry>
         </collision>
+        -->
 
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
