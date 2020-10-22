@@ -1,0 +1,20 @@
+material Gogoro/Asphalt{
+    receive_shadows on
+
+    technique
+    {
+        pass
+        {
+            ambient 1 1 1 1.0000
+            diffuse 1 1 1 1.0000
+            specular 0.03 0.03 0.03 1.0000
+            emissive 0.9 0.9 0.9 1.0
+
+            texture_unit
+            {
+                texture asphalt2.jpg
+                scale 0.01 0.01
+            }
+        }
+    }
+}

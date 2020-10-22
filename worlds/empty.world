@@ -73,8 +73,8 @@
           </geometry>
           <material>
             <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Green</name>
+              <uri>file://ground.material</uri>
+              <name>Gogoro/Asphalt</name>
             </script>
           </material>
         </visual>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <launch>
+    <env name="GAZEBO_RESOURCE_PATH" value="$(find gogoro_description)/materials"/>
 
     <arg name="paused" default="true"/>
     <arg name="use_sim_time" default="true"/>   
@@ -55,5 +56,6 @@
     
     <include file="$(find gogoro_description)/launch/position_controller.launch"/>
     <include file="$(find thormang3_gazebo)/launch/position_controller.launch"/>
+
     
 </launch>

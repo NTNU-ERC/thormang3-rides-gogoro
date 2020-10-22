@@ -35,7 +35,7 @@
         <child link="front"/>
         <origin xyz="-30e-03 0 -580.288e-03" rpy="0 0.5235987755982988 0"/>
         <axis xyz="0 1 0"/>
-        <limit velocity="100000" effort="0"/>
+        <limit velocity="1000" effort="0"/>
         <dynamics damping="0.0" friction="0.0"/>
     </joint>    
 
@@ -78,8 +78,9 @@
     <link name="body">
         <inertial>
             <origin xyz="-43.617e-03 0 486.763e-03" rpy="0 0 0"/>
-            <mass value="6.5007e+01"/> <!-- 79.2 -->
+            <mass value="79.2"/> <!-- 79.2 -->
             <inertia ixx="4.40515" ixy="0.117584" ixz="-1.66168" iyy="18.0137" iyz="0.098875" izz="14.8791"/>
+            <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
         </inertial>
 
         <collision>
@@ -102,8 +103,11 @@
     <link name="head">
         <inertial>
             <origin xyz="0 0 0" rpy="0 0 0"/>
-            <mass value="8.280e+00"/>
-            <inertia ixx="1.209e+01" ixy="0" ixz="5.265e+00" iyy="1.505e+01" iyz="0" izz="3.955e+01"/>
+            <!-- <mass value="8.280e+00"/> -->
+            <mass value="0.1"/>
+            <!-- <inertia ixx="1.209e+01" ixy="0" ixz="5.265e+00" iyy="1.505e+01" iyz="0" izz="3.955e+01"/> -->
+            <!-- <inertia ixx="1.209e-02" ixy="0" ixz="5.265e-03" iyy="1.505e-02" iyz="0" izz="3.955e-02"/> -->
+            <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
         </inertial>
 
         <collision>
@@ -128,8 +132,8 @@
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <!-- <mass value="2.753e+00"/> -->
             <mass value="0.1"/>
-            <!-- <inertia ixx="8.712" ixy="0" ixz="0" iyy="77.28" iyz="0" izz="8.712"/> -->
-            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+            <!-- <inertia ixx="0.8712e-03" ixy="0" ixz="0" iyy="7.728e-03" iyz="0" izz=".8712e-03"/> -->
+            <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
         </inertial>
 
         <collision name="collision_front">
@@ -152,10 +156,10 @@
     <link name="back">
         <inertial>
             <origin xyz="0 0 0" rpy="0 0 0"/>
-            <mass value="2.753e+00"/>
-            <!-- <mass value="0.1"/> -->
-            <inertia ixx=".8712" ixy="0" ixz="0" iyy="7.728" iyz="0" izz=".8712"/>
-            <!-- <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/> -->
+            <!-- <mass value="2.753e+00"/> -->
+            <mass value="0.1"/>
+            <!-- <inertia ixx=".8712e-03" ixy="0" ixz="0" iyy="7.728e-03" iyz="0" izz=".8712e-03"/> -->
+             <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
         </inertial>
 
         <collision name="collision_back">
