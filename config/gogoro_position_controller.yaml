@@ -8,7 +8,7 @@ gogoro:
   steering:
    type: effort_controllers/JointPositionController
    joint: steering_joint
-   pid: {p: 70.0, i: 10.0, d: 20}
+   pid: {p: 200.0, i: 20.0, d: 40.0}
    #pid: {p: 1.0, i: .01, d: .1}
 
   # Gas is a velocity controller

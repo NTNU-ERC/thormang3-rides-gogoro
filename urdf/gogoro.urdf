@@ -35,7 +35,7 @@
         <child link="front"/>
         <origin xyz="-30e-03 0 -580.288e-03" rpy="0 0.5235987755982988 0"/>
         <axis xyz="0 1 0"/>
-        <limit velocity="1000" effort="0"/>
+        <!--<limit velocity="1000" effort="0"/> -->
         <dynamics damping="0.0" friction="0.0"/>
     </joint>    
 
